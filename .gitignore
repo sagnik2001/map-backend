@@ -1,8 +1,10 @@
 # Ignore environment variables file
 .env
 
+node_modules/
+
+
 # Ignore node modules
-/node_modules
 
 # Ignore Firebase admin SDK service account key file
-/straptude-firebase-adminsdk.json
+straptude-firebase-adminsdk.json/
