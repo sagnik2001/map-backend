@@ -65,15 +65,7 @@ To get started with the backend, follow these steps:
    REDIS_URL=your_redis_connection_url
    ```
 
-## Environment Variables
 
-Ensure you have the following environment variables set up in your `.env` file:
-
-- `MONGODB_URI`: MongoDB connection string.
-- `FIREBASE_PROJECT_ID`: Your Firebase project ID.
-- `FIREBASE_PRIVATE_KEY`: The private key for your Firebase service account.
-- `FIREBASE_CLIENT_EMAIL`: The client email associated with your Firebase service account.
-- `REDIS_URL`: The URL for your Redis instance.
 
 ## Running the Project
 
