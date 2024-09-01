@@ -1,13 +1,21 @@
 const admin = require("firebase-admin")
 let serviceAccount;
 
+
+
+require('dotenv').config()
+
+
 try {
-    serviceAccount = require("../straptude-firebase-adminsdk.json")
+    serviceAccount = JSON.parse(process.env.FIREBASE_JSON)
 } catch (error) {
     console.error('Failed to load the module:', error);
 }
 
-require('dotenv').config()
+
+
+
+
 
 // if (serviceAccount) {
 admin.initializeApp({
@@ -22,4 +30,4 @@ admin.initializeApp({
 //         }
 //     )
 // }
-module.exports =  admin 
+module.exports = admin 
