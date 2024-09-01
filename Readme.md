@@ -58,10 +58,10 @@ To get started with the backend, follow these steps:
 3. Set up your environment variables. Create a `.env` file in the root of your project and add the following:
 
    ```bash
-   MONGODB_URI=your_mongodb_connection_string
-   FIREBASE_PROJECT_ID=your_firebase_project_id
-   FIREBASE_PRIVATE_KEY=your_firebase_private_key
-   FIREBASE_CLIENT_EMAIL=your_firebase_client_email
+   MONGO_URL=your_mongodb_connection_string
+   MONGO_USERNAME=your_mongodb_user_name
+   MONGO_PASSWORD=your_mongodb_password
+   MONGO_DATABASE=your_mongodb_database
    REDIS_URL=your_redis_connection_url
    ```
 
