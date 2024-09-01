@@ -32,56 +32,35 @@ class MapController {
         try {
             const topRegions = await Map.aggregate([
                 { $match: { userId } },
-                { $unwind: "$mapData" },
                 {
                     $group: {
                         _id: {
                             latitude: "$mapData.latitude",
                             longitude: "$mapData.longitude"
                         },
+                        imageUrl: { $first: "$imageUrl" },
                         count: { $sum: 1 }
                     }
                 },
                 { $sort: { count: -1 } },
                 { $limit: 3 }
             ]);
-
-            const regions = topRegions.map(region => ({
-                latitude: region._id.latitude,
-                longitude: region._id.longitude
-            }));
-
-            const mapsWithUrls = await Map.find({
-                userId,
-                $or: regions.map(region => ({
-                    "mapData.latitude": region.latitude,
-                    "mapData.longitude": region.longitude
-                }))
-            });
-
-            const regionImageUrls = {};
-            mapsWithUrls.forEach(map => {
-                const { latitude, longitude } = map.mapData;
-                const key = `${latitude},${longitude}`;
-                if (!regionImageUrls[key]) {
-                    regionImageUrls[key] = map.imageUrl;
-                }
-            });
-
+    
             const result = topRegions.map(region => ({
                 mapData: {
                     latitude: region._id.latitude,
                     longitude: region._id.longitude,
                 },
                 count: region.count,
-                imageUrl: regionImageUrls[`${region._id.latitude},${region._id.longitude}`] || null
+                imageUrl: region.imageUrl
             }));
-
+    
             return res.status(200).json({ status: 200, data: result, message: 'Top Frequent Regions' });
         } catch (error) {
             res.status(500).json({ message: error.message });
         }
     }
+    
 }
 
 module.exports = new MapController();
